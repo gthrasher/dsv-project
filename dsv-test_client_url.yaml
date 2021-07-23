@@ -1,0 +1,28 @@
+---
+-
+  name: Testing DSV
+  hosts: gtdocktest
+  vars:
+    # commenting out clienturl hardcoded var.  pass in when executing playbook via: python3.9 /usr/bin/ansible-playbook dsv-test-client-url.yaml -i inventory.txt --extra-vars "clienturl=<<url>>"
+    # NOTE: you will first need to generate one-time-use client url from dsv: ./dsv client create --role gitRole --url
+    #
+    # clienturl: "https://thrasher.secretsvaultcloud.com/v1/clients/bootstrap/480420c0-2b13-4a01-8d3d-9869af691cd0"
+  tasks:
+    - uri:
+        url: "{{ clienturl }}"
+      register: clientCreds
+    - ansible.builtin.debug:
+        msg: "The clientSecret is: {{ clientCreds['json']['clientSecret'] }}"
+    - ansible.builtin.debug:
+        msg: "The clientId is: {{ clientCreds['json']['clientId'] }}"
+    - name: set Cred Vars
+      set_fact:
+        clientId: "{{ clientCreds['json']['clientId'] }}"
+        clientSecret: "{{ clientCreds['json']['clientSecret'] }}"
+    - name: get secret from DSV
+      set_fact:
+        secret: "{{ lookup('community.general.dsv', '/github/testuser', client_id=clientId, client_secret=clientSecret, tenant='thrasher') }}"
+    - ansible.builtin.debug:
+        msg: "secret: {{ secret }}"
+    - ansible.builtin.debug:
+        msg: "secret username: {{ secret['data']['username'] }} and secret password: {{ secret['data']['password'] }}"

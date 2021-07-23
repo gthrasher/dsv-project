@@ -1,0 +1,15 @@
+-
+  name: Testing DSV
+  hosts: gtdocktest
+  vars:
+    clienturl: "https://thrasher.secretsvaultcloud.com/v1/clients/bootstrap/eb02eb2a-879f-44af-8b51-f8a8f7bb1f0b"
+  tasks:
+    - uri:
+        url: "{{ clienturl }}"
+      register: clientCreds
+    - ansible.builtin.debug:
+        msg: "The clientSecret is: {{ clientCreds['json']['clientSecret'] }}"
+    - ansible.builtin.debug:
+        msg: "The clientId is: {{ clientCreds['json']['clientId'] }}"
+    - name: get secret from DSV
+      
