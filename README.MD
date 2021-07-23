@@ -1,6 +1,6 @@
 # Ansible playbooks using DSV plugin to retrieve secrets
 
-# NOTE: requires installation of python-dsv-sdk module
+### NOTE: requires installation of python-dsv-sdk module
 
 ## Use-cases:
 - **dsv-test_client_creds.yaml:** Hard coding DSV client creds in playbook
