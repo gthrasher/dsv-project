@@ -2,7 +2,7 @@
   name: Testing DSV
   hosts: gtdocktest
   vars:
-    #client_creds: "{{ lookup('url','https://thrasher.secretsvaultcloud.com/v1/clients/bootstrap/f5470e29-a6e9-423d-b723-c01487323cfb') }}"
+    # client_creds: "{{ lookup('url','https://thrasher.secretsvaultcloud.com/v1/clients/bootstrap/f5470e29-a6e9-423d-b723-c01487323cfb') }}"
     #secret: "{{ lookup('community.general.dsv', '/github/testuser', client_id='c08f968b-c660-487e-92a9-ffddaf71de12', client_secret='KPkiZaKj-8kHfo3ebpn7LxwP27odhXkqE4pB2-EhPkk', tenant='thrasher') }}"
     #clientId: 'clientId={{ client_creds["clientId"] }}'
     #clientSecret: 'clientSecret={{ client_creds["clientSecret"] }}'
