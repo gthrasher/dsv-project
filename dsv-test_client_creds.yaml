@@ -2,12 +2,9 @@
   name: Testing DSV
   hosts: gtdocktest
   vars:
-    # secret: "{{ lookup('community.general.dsv', '/github/testuser', client_id='c08f968b-c660-487e-92a9-ffddaf71de12', client_secret='KPkiZaKj-8kHfo3ebpn7LxwP27odhXkqE4pB2-EhPkk', tenant='thrasher') }}"
     secret: "{{ lookup('community.general.dsv', '/github/testuser', client_id='c08f968b-c660-487e-92a9-ffddaf71de12', client_secret='KPkiZaKj-8kHfo3ebpn7LxwP27odhXkqE4pB2-EhPkk', tenant='thrasher') }}"
   tasks:
     - debug: var=ansible_python_interpreter
     - debug: var=ansible_python_version
     - ansible.builtin.debug:
         msg: 'the username is: {{ secret["data"]["username"] }} and the password is: {{ secret["data"]["password"] }}'
-        # msg: 'the password is: {{ secret["data"]["password"] }}'
-        #msg: "{{ lookup('community.general.dsv', '/github/testuser', client_id='c08f968b-c660-487e-92a9-ffddaf71de12', client_secret='KPkiZaKj-8kHfo3ebpn7LxwP27odhXkqE4pB2-EhPkk', tenant='thrasher') }}"
